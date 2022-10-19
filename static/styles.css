@@ -3,6 +3,8 @@
 }
 body, html {
     font-size: 12px;
+    height: 100%;
+    max-height: 100%;
 }
 * { 
     border-radius: 0px !important; 
@@ -17,4 +19,37 @@ body, html {
 .panel-spacer {
     width: 50px;
     display: inline-block;
+}
+
+.main-wrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: grid;
+    grid-template-rows: 20px 1fr;
+}
+
+.top-panel {
+
+}
+
+.middle-wrapper {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+}
+
+.middle-wrapper .left-side {
+    display: grid;
+    grid-template-rows: 10% 90%;
+}
+
+.middle-wrapper .right-side {
+
+}
+
+.left-side-form {
+    display: grid;
+    grid-template-rows: 30px 50% 30px 50%;
 }

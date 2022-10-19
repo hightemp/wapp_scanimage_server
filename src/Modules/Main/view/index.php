@@ -1,20 +1,11 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-auto">
-            <h3>Сканирование документов</h3>
-        </div>
-        <div class="col-auto">
-            <!-- <a class="btn btn-primary" href="?action=start" role="button">Start</a> -->
-        </div>        
-        <div class="col">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            <div style="height:10vh;overflow-y:scroll;">
+<div class="main-wrapper">
+    <div class="top-panel">Сканирование документов</div>
+    <div class="middle-wrapper">
+        <div class="left-side">
+            <div style="overflow-y:scroll;">
                 <?php echo $sScannersList ?>
             </div>
-            <form action="?m=Main&a=fnActionHTML" target="actions-iframe" method="POST">
+            <form class="left-side-form" action="?m=Main&a=fnActionHTML" target="actions-iframe" method="POST">
                 <div>
                     <button type="sumbit" class="btn btn-success" name="action" value="scan">Скан.</button>
                     <button type="sumbit" class="btn btn-danger" name="action" value="delete">Удал.</button>
@@ -22,7 +13,7 @@
                     <button type="sumbit" class="btn btn-info" name="action" value="download">Скач.</button>
                     <button type="button" class="btn btn-primary" name="action" value="refresh" onlcik="window.location.reload()">Обн.</button>
                 </div>
-                <div style="height:50vh;overflow-y:scroll;">
+                <div style="overflow-y:scroll;">
                     <div class="list-group">
                         <?php foreach ($aScannedFiles as $aScannedFile): ?>
                         <div class="list-group-item list-group-item-action flex-column align-items-start">
@@ -39,7 +30,7 @@
                     <button type="sumbit" class="btn btn-danger" name="action" value="delete_archives">Удал.</button>
                     <button type="sumbit" class="btn btn-danger" name="action" value="delete_all_archives">Очис.</button>
                 </div>
-                <div style="height:34vh;overflow-y:scroll;">
+                <div style="overflow-y:scroll;">
                     <div class="list-group">
                         <?php foreach ($aPackedFiles as $aPackedFile): ?>
                         <div class="list-group-item list-group-item-action flex-column align-items-start">
@@ -53,9 +44,10 @@
                     </div>
                 </div>
             </form>
-            <iframe src="about:blank" frameborder="0" id="actions-iframe" name="actions-iframe" style="display:none"></iframe>
         </div>
-        <div class="col">
+        <div class="right-side">
+            <iframe src="about:blank" frameborder="0" id="actions-iframe" name="actions-iframe" style="display:none"></iframe>
+
             <iframe src="?m=Main&a=fnImageHTML" frameborder="0" id="image-iframe" name="image-iframe"></iframe>
         </div>
     </div>
