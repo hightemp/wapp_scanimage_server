@@ -15,9 +15,13 @@ class Project
     const C_DATABASE = ROOT_PATH.'/data/dbfile.db';
     const C_SCANNED_REL_PATH = "/files/scanned";
     const C_SCANNED_PATH = ROOT_PATH.self::C_SCANNED_REL_PATH;
+    const C_SCANNED_FILE_MASK = "*.jpeg";
+    const C_ARCHIVED_REL_PATH = "/files/archives";
+    const C_ARCHIVED_PATH = ROOT_PATH.self::C_ARCHIVED_REL_PATH;
+    const C_ARCHIVED_FILE_MASK = "*.zip";
     const C_CACHE_PATH = ROOT_PATH."/cache";
 
-    const C_SCANNED_FILE_MASK = "*.jpeg";
+
 
     public static function fnInit()
     {
@@ -71,6 +75,23 @@ class Project
             return [
                 basename($mI),
                 $mI,
+                static::human_filesize($aStat['size']),
+                ...((array)$aStat)
+            ]; 
+        }, $aFiles);
+
+        return $aFiles;
+    }
+
+    public static function fnGetArchivedFiles()
+    {
+        $aFiles = glob(static::C_ARCHIVED_PATH."/".static::C_ARCHIVED_FILE_MASK);
+
+        $aFiles = array_map(function($mI) { 
+            $aStat = stat($mI);
+            return [
+                basename($mI),
+                static::C_ARCHIVED_REL_PATH.'/'.basename($mI),
                 static::human_filesize($aStat['size']),
                 ...((array)$aStat)
             ]; 

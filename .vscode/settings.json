@@ -1,4 +1,4 @@
 {
     "php.suggest.basic": false,
-    "window.title": "${dirty}${rootName} ${separator} [Branch: master]"
+    "window.title": "${dirty}${rootName} ${separator} [Branch: main]"
 }

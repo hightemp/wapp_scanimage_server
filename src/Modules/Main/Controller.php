@@ -10,6 +10,7 @@ class Controller
     {
         $sScannersList = Project::fnGetScannersListCached();
         $aScannedFiles = Project::fnGetScannedFiles();
+        $aPackedFiles = Project::fnGetArchivedFiles();
 
         require_once("view/index.php");
     }
@@ -75,6 +76,39 @@ HTML;
 <script>window.parent.location.reload()</script>
 HTML;
             }
+
+            if ($_POST['action']=='download') {
+                $zip = new \ZipArchive;
+                if ($zip->open(Project::C_ARCHIVED_PATH.'/'.time().'.zip', \ZipArchive::CREATE) === TRUE)
+                {
+                    foreach ($_POST['images'] as $sFile) {
+                        $sFilePath = Project::fnGetImagePath($sFile);
+                        $zip->addFile($sFilePath);
+                    }
+                    
+                    $zip->close();
+                }
+                echo <<<HTML
+<script>window.parent.location.reload()</script>
+HTML;
+            }
+            if ($_POST['action']=='download_all') {
+                $zip = new \ZipArchive;
+                if ($zip->open(Project::C_ARCHIVED_PATH.'/'.time().'.zip', \ZipArchive::CREATE) === TRUE)
+                {
+                    $aFiles = Project::fnGetScannedFiles();
+                    foreach ($aFiles as $aFile) {
+                        $sFilePath = Project::fnGetImagePath($aFile[1]);
+                        $zip->addFile($sFilePath);
+                    }
+                    
+                    $zip->close();
+                }
+                echo <<<HTML
+<script>window.parent.location.reload()</script>
+HTML;
+            }
+            
         }
 
         die();
