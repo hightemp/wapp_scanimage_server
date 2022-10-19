@@ -1,0 +1,17 @@
+{
+    "name": "hightemp/wapp_snanimage_server",
+    "autoload": {
+        "psr-4": {
+            "Hightemp\\WappSnanimageServer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Антон Панов",
+            "email": "hightemp.unknown@gmail.com"
+        }
+    ],
+    "require": {
+        "league/url": "^3.3"
+    }
+}
