@@ -138,6 +138,16 @@ class Project
         return static::C_SCANNED_REL_PATH."/".$sImageFile;
     }
 
+    public static function fnGetArchivePath($sArchiveFile)
+    {
+        return static::C_ARCHIVED_PATH."/".$sArchiveFile;
+    }
+
+    public static function fnGetArchiveRelPath($sArchiveFile)
+    {
+        return static::C_ARCHIVED_REL_PATH."/".$sArchiveFile;
+    }
+
     public static function human_filesize($bytes, $dec = 2) 
     {
         $size   = array('B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');

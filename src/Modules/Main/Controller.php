@@ -43,7 +43,6 @@ class Controller
                 echo <<<HTML
 <script>
 window.parent.frames[1].location = '?m=Main&a=fnImageHTML&file={$sImageFile}';
-alert('?m=Main&a=fnImageHTML&file={$sImageFile}');
 window.parent.location.reload();
 </script>
 HTML;
@@ -69,6 +68,25 @@ HTML;
             }
             if ($_POST['action']=='delete_all') {
                 $aFiles = Project::fnGetScannedFiles();
+                foreach ($aFiles as $aFile) {
+                    unlink($aFile[1]);
+                }
+                echo <<<HTML
+<script>window.parent.location.reload()</script>
+HTML;
+            }
+
+            if ($_POST['action']=='delete_archives') {
+                foreach ($_POST['archives'] as $sFile) {
+                    $sFilePath = Project::fnGetArchivePath($sFile);
+                    unlink($sFilePath);
+                }
+                echo <<<HTML
+<script>window.parent.location.reload()</script>
+HTML;
+            }
+            if ($_POST['action']=='delete_all_archives') {
+                $aFiles = Project::fnGetArchivedFiles();
                 foreach ($aFiles as $aFile) {
                     unlink($aFile[1]);
                 }
