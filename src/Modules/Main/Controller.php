@@ -11,6 +11,9 @@ class Controller
         $sScannersList = Project::fnGetScannersListCached();
         $aScannedFiles = Project::fnGetScannedFiles();
         $aPackedFiles = Project::fnGetArchivedFiles();
+        $aPDFFiles = Project::fnGetPDFFiles();
+
+        $sURL = isset($_SESSION['scan_url']) && $_SESSION['scan_url'] ? $_SESSION['scan_url'] : "about:blank";
 
         require_once("view/index.php");
     }
@@ -23,6 +26,11 @@ class Controller
         } else {
             require_once("view/blank.php");
         }
+    }
+
+    public static function fnTestHTML()
+    {
+        require_once("view/test.php");
     }
 
     public static function fnBlankHTML()
@@ -40,9 +48,9 @@ class Controller
         if (isset($_GET['action'])) {
             if ($_GET['action']=='scan_image') {
                 $sImageFile = Project::fnScanImage();
+                $_SESSION['scan_url'] = "?m=Main&a=fnImageHTML&file={$sImageFile}";
                 echo <<<HTML
 <script>
-window.parent.frames[1].location = '?m=Main&a=fnImageHTML&file={$sImageFile}';
 window.parent.location.reload();
 </script>
 HTML;
@@ -88,7 +96,26 @@ HTML;
             if ($_POST['action']=='delete_all_archives') {
                 $aFiles = Project::fnGetArchivedFiles();
                 foreach ($aFiles as $aFile) {
-                    unlink($aFile[1]);
+                    unlink(Project::fnGetArchivePath($aFile[0]));
+                }
+                echo <<<HTML
+<script>window.parent.location.reload()</script>
+HTML;
+            }
+
+            if ($_POST['action']=='delete_pdf') {
+                foreach ($_POST['pdf'] as $sFile) {
+                    $sFilePath = Project::fnGetPDFPath($sFile);
+                    unlink($sFilePath);
+                }
+                echo <<<HTML
+<script>window.parent.location.reload()</script>
+HTML;
+            }
+            if ($_POST['action']=='delete_all_pdf') {
+                $aFiles = Project::fnGetPDFFiles();
+                foreach ($aFiles as $aFile) {
+                    unlink(Project::fnGetPDFPath($aFile[0]));
                 }
                 echo <<<HTML
 <script>window.parent.location.reload()</script>
@@ -122,6 +149,25 @@ HTML;
                     
                     $zip->close();
                 }
+                echo <<<HTML
+<script>window.parent.location.reload()</script>
+HTML;
+            }
+
+            if ($_POST['action']=='convert_pdf') {
+                $sOutputFile = Project::C_PDF_PATH.'/'.time().'.pdf';
+                Project::fnConvertImagesToPDF($_POST['images'], $sOutputFile);
+
+                echo <<<HTML
+<script>window.parent.location.reload()</script>
+HTML;
+            }
+            if ($_POST['action']=='convert_pdf_all') {
+                $aFiles = Project::fnGetScannedFiles();
+                $aFiles = array_map(function($aI) { return $aI[0]; }, $aFiles);
+                $sOutputFile = Project::C_PDF_PATH.'/'.time().'.pdf';
+                Project::fnConvertImagesToPDF($aFiles, $sOutputFile);
+                
                 echo <<<HTML
 <script>window.parent.location.reload()</script>
 HTML;

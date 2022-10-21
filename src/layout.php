@@ -2,19 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>port scanner</title>
+    <title>Сканирование изображений</title>
 
     <link rel="shortcut icon" href="/static/favicon.png" type="image/png">
-
-<style>
-<?php require_once(ROOT_PATH."/static/bootstrap.min.css") ?>
-<?php require_once(ROOT_PATH."/static/styles.css") ?>
-</style>
-<script>
-<?php require_once(ROOT_PATH."/static/bootstrap.bundle.min.js") ?>
-</script>
 
 </head>
 <body>
@@ -28,3 +19,13 @@
     height: 100%;
 }
 </style>
+
+<style>
+<?php require_once(ROOT_PATH."/static/bootstrap.min.css") ?>
+<?php require_once(ROOT_PATH."/static/styles.css") ?>
+</style>
+
+<script src="/static/jquery-3.2.1.slim.min.js"></script>
+<script src="/static/popper.min.js"></script>
+<script src="/static/bootstrap.min.js"></script>
+<script src="/static/holder.min.js"></script>

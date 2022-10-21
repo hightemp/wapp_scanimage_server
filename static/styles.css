@@ -28,11 +28,12 @@ body, html {
     right: 0px;
     bottom: 0px;
     display: grid;
-    grid-template-rows: 20px 1fr;
+    grid-template-rows: 30px 95%;
 }
 
 .top-panel {
-
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .middle-wrapper {
@@ -51,5 +52,11 @@ body, html {
 
 .left-side-form {
     display: grid;
-    grid-template-rows: 30px 50% 30px 50%;
+    grid-template-rows: 30px 46% 35px 46%;
+}
+
+.tab-content .tab-pane.active {
+    display: grid;
+    grid-template-rows: 30px 1fr;
+    height: 100%;
 }

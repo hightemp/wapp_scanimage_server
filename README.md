@@ -7,6 +7,7 @@
 ## Зависимости
 
 - php 7
+- imagemagick (для pdf)
 - sqlite
 - redbeansphp
 - league/url ^3.3

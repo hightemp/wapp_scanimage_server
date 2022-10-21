@@ -13,12 +13,19 @@ class Project
     public static $aHeadCrumbs = [];
 
     const C_DATABASE = ROOT_PATH.'/data/dbfile.db';
+
     const C_SCANNED_REL_PATH = "/files/scanned";
     const C_SCANNED_PATH = ROOT_PATH.self::C_SCANNED_REL_PATH;
     const C_SCANNED_FILE_MASK = "*.jpeg";
+
     const C_ARCHIVED_REL_PATH = "/files/archives";
     const C_ARCHIVED_PATH = ROOT_PATH.self::C_ARCHIVED_REL_PATH;
     const C_ARCHIVED_FILE_MASK = "*.zip";
+
+    const C_PDF_REL_PATH = "/files/pdf";
+    const C_PDF_PATH = ROOT_PATH.self::C_PDF_REL_PATH;
+    const C_PDF_FILE_MASK = "*.pdf";
+
     const C_CACHE_PATH = ROOT_PATH."/cache";
 
 
@@ -66,6 +73,23 @@ class Project
         return $oCurrentURL.'';
     }
 
+    public static function fnGetPDFFiles()
+    {
+        $aFiles = glob(static::C_PDF_PATH."/".static::C_PDF_FILE_MASK);
+
+        $aFiles = array_map(function($mI) { 
+            $aStat = stat($mI);
+            return [
+                basename($mI),
+                static::C_PDF_REL_PATH.'/'.basename($mI),
+                static::human_filesize($aStat['size']),
+                ...((array)$aStat)
+            ]; 
+        }, $aFiles);
+
+        return $aFiles;
+    }
+
     public static function fnGetScannedFiles()
     {
         $aFiles = glob(static::C_SCANNED_PATH."/".static::C_SCANNED_FILE_MASK);
@@ -99,6 +123,17 @@ class Project
 
         return $aFiles;
     }
+
+    public static function fnConvertImagesToPDF($aFilesList, $sOutputFile)
+    {
+        $aFilesList = array_map(function($sI) {
+            return Project::C_SCANNED_PATH.'/'.$sI;
+        }, $aFilesList);
+        $sList = join(" ", $aFilesList);
+        exec("convert {$sList} -auto-orient {$sOutputFile}", $aOutput, $iCode);
+        return join("<br>\n", $aOutput);
+    }
+    
 
     public static function fnGetScannersList()
     {
@@ -146,6 +181,16 @@ class Project
     public static function fnGetArchiveRelPath($sArchiveFile)
     {
         return static::C_ARCHIVED_REL_PATH."/".$sArchiveFile;
+    }
+
+    public static function fnGetPDFPath($sArchiveFile)
+    {
+        return static::C_PDF_PATH."/".$sArchiveFile;
+    }
+
+    public static function fnGetPDFRelPath($sArchiveFile)
+    {
+        return static::C_PDF_REL_PATH."/".$sArchiveFile;
     }
 
     public static function human_filesize($bytes, $dec = 2) 
