@@ -22,13 +22,13 @@ body, html {
 }
 
 .main-wrapper {
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     right: 0px;
     bottom: 0px;
     display: grid;
-    grid-template-rows: 30px 95%;
+    grid-template-rows: 30px 90vh;
 }
 
 .top-panel {
@@ -52,7 +52,7 @@ body, html {
 
 .left-side-form {
     display: grid;
-    grid-template-rows: 30px 46% 35px 46%;
+    grid-template-rows: 35px 95%;
 }
 
 .tab-content .tab-pane.active {
