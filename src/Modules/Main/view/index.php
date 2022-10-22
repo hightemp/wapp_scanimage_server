@@ -12,17 +12,18 @@
                         <a class="nav-item nav-link active" id="nav-scans-tab" data-toggle="tab" href="#nav-scans" role="tab" aria-controls="nav-scans" aria-selected="true">Сканы</a>
                         <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Архивы</a>
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">PDF</a>
+                        <a class="nav-item nav-link" id="nav-settings-tab" data-toggle="tab" href="#nav-settings" role="tab" aria-controls="nav-settings" aria-selected="false">Настройки</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-scans" role="tabpanel" aria-labelledby="nav-scans-tab">
                         <div>
-                            <button type="sumbit" class="btn btn-success" name="action" value="scan">Скан.</button>
-                            <button type="sumbit" class="btn btn-danger" name="action" value="delete">Удал.</button>
-                            <button type="sumbit" class="btn btn-danger" name="action" value="delete_all">Очис.</button>
-                            <button type="sumbit" class="btn btn-info" name="action" value="download">Скач.</button>
-                            <button type="sumbit" class="btn btn-info" name="action" value="convert_pdf">PDF</button>
-                            <button type="button" class="btn btn-primary" name="action" value="refresh" onlcik="window.location.reload()">Обн.</button>
+                            <button type="sumbit" class="btn btn-lg btn-success" name="action" value="scan">Скан.</button>
+                            <button type="sumbit" class="btn btn-lg btn-danger" name="action" value="delete">Удал.</button>
+                            <button type="sumbit" class="btn btn-lg btn-danger" name="action" value="delete_all">Очис.</button>
+                            <button type="sumbit" class="btn btn-lg btn-info" name="action" value="download">Скач.</button>
+                            <button type="sumbit" class="btn btn-lg btn-info" name="action" value="convert_pdf">PDF</button>
+                            <button type="button" class="btn btn-lg btn-primary" name="action" value="refresh" onlcik="window.location.reload()">Обн.</button>
                         </div>
                         <div style="overflow-y:scroll;">
                             <div class="list-group">
@@ -40,8 +41,8 @@
                     </div>
                     <div class="tab-pane fade show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div>
-                            <button type="sumbit" class="btn btn-danger" name="action" value="delete_archives">Удал.</button>
-                            <button type="sumbit" class="btn btn-danger" name="action" value="delete_all_archives">Очис.</button>
+                            <button type="sumbit" class="btn btn-lg btn-danger" name="action" value="delete_archives">Удал.</button>
+                            <button type="sumbit" class="btn btn-lg btn-danger" name="action" value="delete_all_archives">Очис.</button>
                         </div>
                         <div style="overflow-y:scroll;">
                             <div class="list-group">
@@ -59,8 +60,8 @@
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <div>
-                            <button type="sumbit" class="btn btn-danger" name="action" value="delete_pdf">Удал.</button>
-                            <button type="sumbit" class="btn btn-danger" name="action" value="delete_all_pdf">Очис.</button>
+                            <button type="sumbit" class="btn btn-lg btn-danger" name="action" value="delete_pdf">Удал.</button>
+                            <button type="sumbit" class="btn btn-lg btn-danger" name="action" value="delete_all_pdf">Очис.</button>
                         </div>
                         <div style="overflow-y:scroll;">
                             <div class="list-group">
@@ -74,6 +75,20 @@
                                 </div>
                                 <?php endforeach ?>
                             </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-settings" role="tabpanel" aria-labelledby="nav-settings-tab">
+                        <div class="form-group">
+                            <label for="quality">Качество изображения</label>
+                            <input type="range" class="form-control" id="quality" name="quality" min="0" max="100" value="80">
+                        </div>
+                        <div class="form-group">
+                            <label for="resolution">Разрешение</label>
+                            <select class="form-control" id="resolution" name="resolution">
+                                <option>75</option>
+                                <option>150</option>
+                                <option selected="true">300</option>
+                            </select>
                         </div>
                     </div>
                 </div>

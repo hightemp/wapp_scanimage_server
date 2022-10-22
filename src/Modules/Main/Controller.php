@@ -47,7 +47,7 @@ class Controller
     {
         if (isset($_GET['action'])) {
             if ($_GET['action']=='scan_image') {
-                $sImageFile = Project::fnScanImage();
+                $sImageFile = Project::fnScanImage($_GET['resolution']);
                 $_SESSION['scan_url'] = "?m=Main&a=fnImageHTML&file={$sImageFile}";
                 echo <<<HTML
 <script>
@@ -61,7 +61,7 @@ HTML;
                 echo <<<HTML
 <script>
 window.parent.frames[1].location = '?m=Main&a=fnLoaderHTML';
-window.location = '?m=Main&a=fnActionHTML&action=scan_image';
+window.location = "?m=Main&a=fnActionHTML&action=scan_image&resolution={$_POST['resolution']}";
 </script>
 HTML;
             }

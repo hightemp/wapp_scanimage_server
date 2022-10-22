@@ -7,8 +7,13 @@
 ## Зависимости
 
 - php 7
-- imagemagick (для pdf)
+- img2pdf (для pdf) https://gitlab.mister-muffin.de/josch/img2pdf
 - sqlite
 - redbeansphp
 - league/url ^3.3
 
+### img2pdf
+
+```
+sudo apt install img2pdf
+```

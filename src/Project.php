@@ -130,7 +130,8 @@ class Project
             return Project::C_SCANNED_PATH.'/'.$sI;
         }, $aFilesList);
         $sList = join(" ", $aFilesList);
-        exec("convert {$sList} -auto-orient {$sOutputFile}", $aOutput, $iCode);
+        // exec("convert {$sList} -auto-orient {$sOutputFile}", $aOutput, $iCode);
+        exec("img2pdf {$sList} -o {$sOutputFile}", $aOutput, $iCode);
         return join("<br>\n", $aOutput);
     }
     
@@ -141,11 +142,11 @@ class Project
         return join("<br>\n", $aOutput);
     }
 
-    public static function fnScanImage()
+    public static function fnScanImage($iResolution=300)
     {
         $sImageFile = time().".jpeg";
         $sPath = static::fnGetImagePath($sImageFile);
-        exec("scanimage --format=jpeg --output-file {$sPath}", $aOutput, $iCode);
+        exec("scanimage --format=jpeg --output-file {$sPath} --resolution {$iResolution}", $aOutput, $iCode);
         return $sImageFile;
     }
 
