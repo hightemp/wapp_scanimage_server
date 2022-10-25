@@ -65,6 +65,18 @@ window.location = "?m=Main&a=fnActionHTML&action=scan_image&resolution={$_POST['
 </script>
 HTML;
             }
+
+            if ($_POST['action']=='rename_images') {
+                foreach ($_POST['raname_images'] as $aFile) {
+                    $sOldFilePath = Project::fnGetImagePath($aFile[0]);
+                    $sNewFilePath = Project::fnGetImagePath($aFile[1]);
+                    rename($sOldFilePath, $sNewFilePath);
+                }
+                echo <<<HTML
+<script>window.parent.location.reload()</script>
+HTML;
+            }
+
             if ($_POST['action']=='delete') {
                 foreach ($_POST['images'] as $sFile) {
                     $sFilePath = Project::fnGetImagePath($sFile);

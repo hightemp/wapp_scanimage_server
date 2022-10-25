@@ -55,8 +55,20 @@ body, html {
     grid-template-rows: 35px 85vh;
 }
 
-.tab-content .tab-pane.active {
+.tab-content .tab-list.active {
     display: grid;
     grid-template-rows: 40px 1fr;
     height: 100%;
+}
+
+.dropdown-toggle {
+    height: 100%;
+}
+
+.dropdown-item {
+    font-size: 20px;
+}
+
+.large-label {
+    font-size: 18px;
 }
