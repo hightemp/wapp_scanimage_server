@@ -1,5 +1,7 @@
 # wapp_snanimage_server
 
+[![](https://asdertasd.site/counter/wapp_snanimage_server)](https://asdertasd.site/counter/wapp_snanimage_server)
+
 Веб-приложение для сканирования и менеджемента документов с помощью утилиты xsane.
 
 ![](./images/screenshot_01.png)
