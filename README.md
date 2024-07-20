@@ -1,4 +1,4 @@
-# wapp_snanimage_server
+# wapp_scanimage_server
 
 [![](https://asdertasd.site/counter/wapp_snanimage_server)](https://asdertasd.site/counter/wapp_snanimage_server)
 
