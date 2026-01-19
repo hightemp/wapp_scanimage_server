@@ -1,31 +1,31 @@
 # ScanImage Server
 
-Веб-приложение для сканирования и управления документами с помощью SANE/scanimage.
+Web application for scanning and managing documents using SANE/scanimage.
 
-## Особенности
+## Features
 
-- Современный интерфейс на Vue 3 + Tailwind CSS
-- Темная и светлая тема
-- Drag-and-drop сортировка изображений
-- Конвертация в PDF (img2pdf)
-- Создание ZIP-архивов
-- Адаптивный дизайн для мобильных устройств
-- Один исполняемый файл (embedded frontend)
+- Modern UI with Vue 3 + Tailwind CSS
+- Dark and light themes
+- Drag-and-drop image sorting
+- PDF conversion (img2pdf)
+- ZIP archive creation
+- Responsive design for mobile devices
+- Single executable (embedded frontend)
 
-## Скриншот
+## Screenshot
 
 ![Screenshot](./images/screenshot_01.png)
 
-## Требования
+## Requirements
 
-### Системные зависимости
+### System Dependencies
 
 - Go 1.21+
 - Node.js 18+
 - SANE (scanimage)
 - img2pdf
 
-### Установка зависимостей
+### Installing Dependencies
 
 ```bash
 # Ubuntu/Debian
@@ -38,45 +38,45 @@ sudo pacman -S sane img2pdf
 brew install sane-backends img2pdf
 ```
 
-## Установка
+## Installation
 
 ```bash
-# Клонирование репозитория
+# Clone repository
 git clone https://github.com/hightemp/wapp_scanimage_server.git
 cd wapp_scanimage_server
 
-# Установка зависимостей
+# Install dependencies
 make install
 
-# Сборка
+# Build
 make build
 ```
 
-## Запуск
+## Running
 
-### Режим разработки
+### Development Mode
 
 ```bash
-# Backend (Go сервер)
+# Backend (Go server)
 make dev
 
-# Frontend (Vite dev server с hot reload) - в отдельном терминале
+# Frontend (Vite dev server with hot reload) - in separate terminal
 make dev-frontend
 ```
 
 ### Production
 
 ```bash
-# Сборка и запуск
+# Build and run
 make run
 
-# Или запуск собранного бинарника
+# Or run the built binary
 ./bin/scanimage-server
 ```
 
-## Конфигурация
+## Configuration
 
-Приложение настраивается через переменные окружения или файл `.env`:
+The application is configured via environment variables or `.env` file:
 
 ```bash
 # .env
@@ -91,90 +91,90 @@ VITE_BACKEND_PORT=8080
 
 ### Backend
 
-| Переменная | Описание | По умолчанию |
-|------------|----------|--------------|
-| DEBUG | Режим отладки | false |
-| SERVER_HOST | Хост сервера | 0.0.0.0 |
-| SERVER_PORT | Порт сервера | 8080 |
+| Variable | Description | Default |
+|----------|-------------|---------|
+| DEBUG | Debug mode | false |
+| SERVER_HOST | Server host | 0.0.0.0 |
+| SERVER_PORT | Server port | 8080 |
 
-### Frontend (режим разработки)
+### Frontend (development mode)
 
-| Переменная | Описание | По умолчанию |
-|------------|----------|--------------|
-| VITE_PORT | Порт Vite dev server | SERVER_PORT или 3000 |
-| VITE_HOST | Хост Vite dev server | 0.0.0.0 |
-| VITE_BACKEND_PORT | Порт backend для proxy | SERVER_PORT или 8080 |
-| VITE_BACKEND_HOST | Хост backend для proxy | SERVER_HOST или localhost |
+| Variable | Description | Default |
+|----------|-------------|---------|
+| VITE_PORT | Vite dev server port | SERVER_PORT or 3000 |
+| VITE_HOST | Vite dev server host | 0.0.0.0 |
+| VITE_BACKEND_PORT | Backend port for proxy | SERVER_PORT or 8080 |
+| VITE_BACKEND_HOST | Backend host for proxy | SERVER_HOST or localhost |
 
-Frontend автоматически использует `SERVER_PORT` и `SERVER_HOST` из корневого `.env` для настройки proxy к backend.
+Frontend automatically uses `SERVER_PORT` and `SERVER_HOST` from the root `.env` to configure proxy to backend.
 
 ## API
 
-### Сканеры
+### Scanners
 
-- `GET /api/scanners` - Список сканеров
-- `GET /api/scanners/raw` - Сырой вывод scanimage -L
-- `POST /api/scan` - Выполнить сканирование
+- `GET /api/scanners` - List of scanners
+- `GET /api/scanners/raw` - Raw output of scanimage -L
+- `POST /api/scan` - Perform scan
 
-### Сканы
+### Scans
 
-- `GET /api/scans` - Список отсканированных файлов
-- `DELETE /api/scans` - Удалить все сканы
-- `DELETE /api/scans/:name` - Удалить скан
-- `PUT /api/scans/:name` - Переименовать скан
-- `POST /api/scans/batch` - Пакетные операции
-- `PUT /api/scans/order` - Обновить порядок файлов
+- `GET /api/scans` - List of scanned files
+- `DELETE /api/scans` - Delete all scans
+- `DELETE /api/scans/:name` - Delete scan
+- `PUT /api/scans/:name` - Rename scan
+- `POST /api/scans/batch` - Batch operations
+- `PUT /api/scans/order` - Update file order
 
-### Архивы
+### Archives
 
-- `GET /api/archives` - Список архивов
-- `POST /api/archives` - Создать архив
-- `POST /api/archives/all` - Архивировать все сканы
-- `DELETE /api/archives` - Удалить все архивы
-- `DELETE /api/archives/:name` - Удалить архив
+- `GET /api/archives` - List of archives
+- `POST /api/archives` - Create archive
+- `POST /api/archives/all` - Archive all scans
+- `DELETE /api/archives` - Delete all archives
+- `DELETE /api/archives/:name` - Delete archive
 
 ### PDF
 
-- `GET /api/pdfs` - Список PDF файлов
-- `POST /api/pdfs` - Создать PDF из выбранных
-- `POST /api/pdfs/all` - Конвертировать все в PDF
-- `DELETE /api/pdfs` - Удалить все PDF
-- `DELETE /api/pdfs/:name` - Удалить PDF
+- `GET /api/pdfs` - List of PDF files
+- `POST /api/pdfs` - Create PDF from selected
+- `POST /api/pdfs/all` - Convert all to PDF
+- `DELETE /api/pdfs` - Delete all PDFs
+- `DELETE /api/pdfs/:name` - Delete PDF
 
-### Настройки
+### Settings
 
-- `GET /api/settings` - Получить настройки
-- `PUT /api/settings` - Обновить настройки
+- `GET /api/settings` - Get settings
+- `PUT /api/settings` - Update settings
 
-## Структура проекта
+## Project Structure
 
 ```
 .
-├── cmd/server/          # Точка входа Go приложения
+├── cmd/server/          # Go application entry point
 │   ├── main.go
-│   └── dist/            # Собранный frontend (embedded)
+│   └── dist/            # Built frontend (embedded)
 ├── internal/
-│   ├── config/          # Конфигурация
+│   ├── config/          # Configuration
 │   ├── database/        # SQLite
 │   ├── handlers/        # HTTP handlers
-│   ├── models/          # Модели данных
-│   └── services/        # Бизнес-логика
-├── frontend/            # Vue 3 приложение
+│   ├── models/          # Data models
+│   └── services/        # Business logic
+├── frontend/            # Vue 3 application
 │   ├── src/
-│   │   ├── components/  # Vue компоненты
+│   │   ├── components/  # Vue components
 │   │   ├── stores/      # Pinia stores
-│   │   ├── api/         # API клиент
-│   │   └── types/       # TypeScript типы
+│   │   ├── api/         # API client
+│   │   └── types/       # TypeScript types
 │   └── ...
 ├── files/
-│   ├── scanned/         # Отсканированные изображения
-│   ├── archives/        # ZIP архивы
-│   └── pdf/             # PDF файлы
-├── data/                # SQLite база данных
+│   ├── scanned/         # Scanned images
+│   ├── archives/        # ZIP archives
+│   └── pdf/             # PDF files
+├── data/                # SQLite database
 └── Makefile
 ```
 
-## Технологии
+## Technologies
 
 ### Backend
 - Go 1.21+
@@ -189,6 +189,6 @@ Frontend автоматически использует `SERVER_PORT` и `SERVE
 - Vite (build tool)
 - vuedraggable (drag-and-drop)
 
-## Лицензия
+## License
 
 MIT

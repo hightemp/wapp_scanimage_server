@@ -29,7 +29,7 @@ const handleRefresh = () => {
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
         <div v-else class="spinner w-5 h-5 border-2"></div>
-        <span>{{ store.isScanning ? 'Сканирование...' : 'Сканировать' }}</span>
+        <span>{{ store.isScanning ? 'Scanning...' : 'Scan' }}</span>
       </button>
       
       <!-- Refresh Button -->
@@ -41,12 +41,12 @@ const handleRefresh = () => {
         <svg class="w-5 h-5" :class="{ 'animate-spin': store.isLoading }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
         </svg>
-        <span class="hidden sm:inline">Обновить</span>
+        <span class="hidden sm:inline">Refresh</span>
       </button>
       
       <!-- Selection Info -->
       <div v-if="store.hasSelection" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-        <span>Выбрано: {{ store.selectedCount }}</span>
+        <span>Selected: {{ store.selectedCount }}</span>
       </div>
       
       <!-- Spacer -->
@@ -62,7 +62,7 @@ const handleRefresh = () => {
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
           </svg>
-          <span class="hidden sm:inline">{{ store.allSelected ? 'Снять' : 'Выбрать все' }}</span>
+          <span class="hidden sm:inline">{{ store.allSelected ? 'Deselect' : 'Select All' }}</span>
         </button>
         
         <!-- Actions Dropdown -->
@@ -71,7 +71,7 @@ const handleRefresh = () => {
             @click="showActions = !showActions"
             class="btn btn-secondary flex items-center gap-2"
           >
-            <span>Действия</span>
+            <span>Actions</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
@@ -90,7 +90,7 @@ const handleRefresh = () => {
               <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
-              Удалить выделенное
+              Delete Selected
             </button>
             
             <button
@@ -100,7 +100,7 @@ const handleRefresh = () => {
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
-              Удалить все
+              Delete All
             </button>
             
             <hr class="my-1 border-gray-200 dark:border-gray-700">
@@ -113,7 +113,7 @@ const handleRefresh = () => {
               <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
               </svg>
-              Архивировать выделенное
+              Archive Selected
             </button>
             
             <button
@@ -123,7 +123,7 @@ const handleRefresh = () => {
               <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
               </svg>
-              Архивировать все
+              Archive All
             </button>
             
             <hr class="my-1 border-gray-200 dark:border-gray-700">
@@ -136,7 +136,7 @@ const handleRefresh = () => {
               <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
               </svg>
-              Конвертировать в PDF выделенное
+              Convert Selected to PDF
             </button>
             
             <button
@@ -146,7 +146,7 @@ const handleRefresh = () => {
               <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
               </svg>
-              Конвертировать в PDF все
+              Convert All to PDF
             </button>
           </div>
         </div>
@@ -158,7 +158,7 @@ const handleRefresh = () => {
           @click="store.toggleSelectAll"
           class="btn btn-outline flex items-center gap-2"
         >
-          <span class="hidden sm:inline">{{ store.allSelected ? 'Снять' : 'Выбрать все' }}</span>
+          <span class="hidden sm:inline">{{ store.allSelected ? 'Deselect' : 'Select All' }}</span>
         </button>
         
         <button
@@ -169,7 +169,7 @@ const handleRefresh = () => {
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
           </svg>
-          <span class="hidden sm:inline">Удалить</span>
+          <span class="hidden sm:inline">Delete</span>
         </button>
       </template>
     </div>

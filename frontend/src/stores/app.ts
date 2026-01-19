@@ -73,7 +73,7 @@ export const useAppStore = defineStore('app', () => {
         scannersRaw.value = rawResponse.data.data
       }
     } catch (error) {
-      addToast('error', 'Ошибка получения списка сканеров')
+      addToast('error', 'Failed to get scanner list')
     }
   }
 
@@ -85,7 +85,7 @@ export const useAppStore = defineStore('app', () => {
         scans.value = response.data.data
       }
     } catch (error) {
-      addToast('error', 'Ошибка загрузки сканов')
+      addToast('error', 'Failed to load scans')
     } finally {
       isLoading.value = false
     }
@@ -99,7 +99,7 @@ export const useAppStore = defineStore('app', () => {
         archives.value = response.data.data
       }
     } catch (error) {
-      addToast('error', 'Ошибка загрузки архивов')
+      addToast('error', 'Failed to load archives')
     } finally {
       isLoading.value = false
     }
@@ -113,7 +113,7 @@ export const useAppStore = defineStore('app', () => {
         pdfs.value = response.data.data
       }
     } catch (error) {
-      addToast('error', 'Ошибка загрузки PDF файлов')
+      addToast('error', 'Failed to load PDF files')
     } finally {
       isLoading.value = false
     }
@@ -136,9 +136,9 @@ export const useAppStore = defineStore('app', () => {
       await settingsApi.update(newSettings)
       settings.value = { ...settings.value, ...newSettings }
       applyTheme()
-      addToast('success', 'Настройки сохранены')
+      addToast('success', 'Settings saved')
     } catch (error) {
-      addToast('error', 'Ошибка сохранения настроек')
+      addToast('error', 'Failed to save settings')
     }
   }
 
@@ -159,13 +159,13 @@ export const useAppStore = defineStore('app', () => {
         device: settings.value.default_device
       })
       if (response.data.success) {
-        addToast('success', 'Сканирование завершено')
+        addToast('success', 'Scan completed')
         await fetchScans()
       } else {
-        addToast('error', response.data.error || 'Ошибка сканирования')
+        addToast('error', response.data.error || 'Scan failed')
       }
     } catch (error: any) {
-      addToast('error', error.response?.data?.error || 'Ошибка сканирования')
+      addToast('error', error.response?.data?.error || 'Scan failed')
     } finally {
       isScanning.value = false
     }
@@ -220,9 +220,9 @@ export const useAppStore = defineStore('app', () => {
       }
       
       selectedFiles.value.clear()
-      addToast('success', 'Файлы удалены')
+      addToast('success', 'Files deleted')
     } catch (error) {
-      addToast('error', 'Ошибка удаления файлов')
+      addToast('error', 'Failed to delete files')
     } finally {
       isLoading.value = false
     }
@@ -244,9 +244,9 @@ export const useAppStore = defineStore('app', () => {
       }
       
       selectedFiles.value.clear()
-      addToast('success', 'Все файлы удалены')
+      addToast('success', 'All files deleted')
     } catch (error) {
-      addToast('error', 'Ошибка удаления файлов')
+      addToast('error', 'Failed to delete files')
     } finally {
       isLoading.value = false
     }
@@ -260,11 +260,11 @@ export const useAppStore = defineStore('app', () => {
       const files = Array.from(selectedFiles.value)
       const response = await archivesApi.create(files)
       if (response.data.success) {
-        addToast('success', 'Архив создан')
+        addToast('success', 'Archive created')
         await fetchArchives()
       }
     } catch (error) {
-      addToast('error', 'Ошибка создания архива')
+      addToast('error', 'Failed to create archive')
     } finally {
       isLoading.value = false
     }
@@ -275,11 +275,11 @@ export const useAppStore = defineStore('app', () => {
       isLoading.value = true
       const response = await archivesApi.createAll()
       if (response.data.success) {
-        addToast('success', 'Архив создан')
+        addToast('success', 'Archive created')
         await fetchArchives()
       }
     } catch (error) {
-      addToast('error', 'Ошибка создания архива')
+      addToast('error', 'Failed to create archive')
     } finally {
       isLoading.value = false
     }
@@ -293,11 +293,11 @@ export const useAppStore = defineStore('app', () => {
       const files = Array.from(selectedFiles.value)
       const response = await pdfsApi.create({ files })
       if (response.data.success) {
-        addToast('success', 'PDF создан')
+        addToast('success', 'PDF created')
         await fetchPdfs()
       }
     } catch (error) {
-      addToast('error', 'Ошибка создания PDF')
+      addToast('error', 'Failed to create PDF')
     } finally {
       isLoading.value = false
     }
@@ -308,11 +308,11 @@ export const useAppStore = defineStore('app', () => {
       isLoading.value = true
       const response = await pdfsApi.createAll()
       if (response.data.success) {
-        addToast('success', 'PDF создан')
+        addToast('success', 'PDF created')
         await fetchPdfs()
       }
     } catch (error) {
-      addToast('error', 'Ошибка создания PDF')
+      addToast('error', 'Failed to create PDF')
     } finally {
       isLoading.value = false
     }
@@ -328,7 +328,7 @@ export const useAppStore = defineStore('app', () => {
       await scansApi.updateOrder(orders)
       scans.value = newOrder
     } catch (error) {
-      addToast('error', 'Ошибка сохранения порядка')
+      addToast('error', 'Failed to save order')
     }
   }
 

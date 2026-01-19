@@ -20,8 +20,8 @@ const downloadFile = (relativePath: string) => {
       <svg class="w-16 h-16 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
       </svg>
-      <p class="text-lg">Нет архивов</p>
-      <p class="text-sm mt-2">Архивируйте сканы для скачивания</p>
+      <p class="text-lg">No archives</p>
+      <p class="text-sm mt-2">Archive scans for download</p>
     </div>
     
     <!-- List -->
@@ -71,7 +71,7 @@ const downloadFile = (relativePath: string) => {
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
           </svg>
-          <span class="hidden sm:inline">Скачать</span>
+          <span class="hidden sm:inline">Download</span>
         </button>
       </div>
     </div>

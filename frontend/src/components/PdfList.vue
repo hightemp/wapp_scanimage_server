@@ -20,8 +20,8 @@ const openPdf = (relativePath: string) => {
       <svg class="w-16 h-16 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
       </svg>
-      <p class="text-lg">Нет PDF файлов</p>
-      <p class="text-sm mt-2">Конвертируйте сканы в PDF</p>
+      <p class="text-lg">No PDF files</p>
+      <p class="text-sm mt-2">Convert scans to PDF</p>
     </div>
     
     <!-- List -->
@@ -72,7 +72,7 @@ const openPdf = (relativePath: string) => {
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
           </svg>
-          <span class="hidden sm:inline">Открыть</span>
+          <span class="hidden sm:inline">Open</span>
         </button>
         
         <a
@@ -83,7 +83,7 @@ const openPdf = (relativePath: string) => {
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
           </svg>
-          <span class="hidden sm:inline">Скачать</span>
+          <span class="hidden sm:inline">Download</span>
         </a>
       </div>
     </div>

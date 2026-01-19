@@ -89,7 +89,7 @@ const handleKeyDown = (e: KeyboardEvent) => {
         <button
           @click="zoomOut"
           class="p-2 rounded hover:bg-white/20 text-white transition-colors"
-          title="Уменьшить (−)"
+          title="Zoom Out (−)"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
@@ -103,7 +103,7 @@ const handleKeyDown = (e: KeyboardEvent) => {
         <button
           @click="zoomIn"
           class="p-2 rounded hover:bg-white/20 text-white transition-colors"
-          title="Увеличить (+)"
+          title="Zoom In (+)"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -115,7 +115,7 @@ const handleKeyDown = (e: KeyboardEvent) => {
         <button
           @click="resetZoom"
           class="p-2 rounded hover:bg-white/20 text-white transition-colors"
-          title="Сбросить (0)"
+          title="Reset (0)"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
@@ -127,7 +127,7 @@ const handleKeyDown = (e: KeyboardEvent) => {
       <button
         @click="close"
         class="absolute top-4 right-4 p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors z-10"
-        title="Закрыть (Esc)"
+        title="Close (Esc)"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -157,7 +157,7 @@ const handleKeyDown = (e: KeyboardEvent) => {
       
       <!-- Instructions -->
       <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-sm">
-        Колесо мыши для масштабирования • Перетаскивание для перемещения • Esc для закрытия
+        Scroll to zoom | Drag to pan | Esc to close
       </div>
     </div>
   </Teleport>

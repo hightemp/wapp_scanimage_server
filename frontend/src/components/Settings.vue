@@ -26,33 +26,33 @@ const saveSettings = () => {
 <template>
   <div class="max-w-2xl mx-auto">
     <div class="card p-6">
-      <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-6">Настройки сканирования</h2>
+      <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-6">Scan Settings</h2>
       
       <div class="space-y-6">
         <!-- Resolution -->
         <div>
           <label for="resolution" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Разрешение (DPI)
+            Resolution (DPI)
           </label>
           <select
             id="resolution"
             v-model="resolution"
             class="select"
           >
-            <option value="75">75 DPI (Быстрое)</option>
-            <option value="150">150 DPI (Среднее)</option>
-            <option value="300">300 DPI (Высокое)</option>
-            <option value="600">600 DPI (Очень высокое)</option>
+            <option value="75">75 DPI (Fast)</option>
+            <option value="150">150 DPI (Medium)</option>
+            <option value="300">300 DPI (High)</option>
+            <option value="600">600 DPI (Very High)</option>
           </select>
           <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-            Более высокое разрешение = лучшее качество, но больший размер файла
+            Higher resolution = better quality, but larger file size
           </p>
         </div>
         
         <!-- Quality -->
         <div>
           <label for="quality" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Качество JPEG: {{ quality }}%
+            JPEG Quality: {{ quality }}%
           </label>
           <input
             id="quality"
@@ -64,15 +64,15 @@ const saveSettings = () => {
             class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
           />
           <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
-            <span>Низкое (10%)</span>
-            <span>Высокое (100%)</span>
+            <span>Low (10%)</span>
+            <span>High (100%)</span>
           </div>
         </div>
         
         <!-- Theme -->
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Тема оформления
+            Theme
           </label>
           <div class="grid grid-cols-3 gap-3">
             <button
@@ -87,7 +87,7 @@ const saveSettings = () => {
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
               </svg>
-              <span class="text-sm">Светлая</span>
+              <span class="text-sm">Light</span>
             </button>
             
             <button
@@ -102,7 +102,7 @@ const saveSettings = () => {
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
               </svg>
-              <span class="text-sm">Темная</span>
+              <span class="text-sm">Dark</span>
             </button>
             
             <button
@@ -117,7 +117,7 @@ const saveSettings = () => {
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <span class="text-sm">Системная</span>
+              <span class="text-sm">System</span>
             </button>
           </div>
         </div>
@@ -125,11 +125,11 @@ const saveSettings = () => {
         <!-- Scanner Info -->
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Информация о сканерах
+            Scanner Information
           </label>
           <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 text-sm font-mono text-gray-600 dark:text-gray-400 whitespace-pre-wrap">
             <template v-if="store.scannersRaw">{{ store.scannersRaw }}</template>
-            <template v-else>Сканеры не найдены</template>
+            <template v-else>No scanners found</template>
           </div>
         </div>
         
@@ -139,7 +139,7 @@ const saveSettings = () => {
             @click="saveSettings"
             class="btn btn-primary w-full sm:w-auto"
           >
-            Сохранить настройки
+            Save Settings
           </button>
         </div>
       </div>
