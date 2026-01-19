@@ -14,7 +14,8 @@ Web application for scanning and managing documents using SANE/scanimage.
 
 ## Screenshot
 
-![Screenshot](./images/screenshot_01.png)
+![](images/2026-01-19_18-12.png)
+![](images/2026-01-19_18-13.png)
 
 ## Requirements
 
