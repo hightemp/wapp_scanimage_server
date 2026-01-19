@@ -83,13 +83,30 @@ make run
 DEBUG=1
 SERVER_HOST=0.0.0.0
 SERVER_PORT=8080
+
+# Frontend dev server (optional)
+VITE_PORT=3000
+VITE_BACKEND_PORT=8080
 ```
+
+### Backend
 
 | Переменная | Описание | По умолчанию |
 |------------|----------|--------------|
 | DEBUG | Режим отладки | false |
 | SERVER_HOST | Хост сервера | 0.0.0.0 |
 | SERVER_PORT | Порт сервера | 8080 |
+
+### Frontend (режим разработки)
+
+| Переменная | Описание | По умолчанию |
+|------------|----------|--------------|
+| VITE_PORT | Порт Vite dev server | SERVER_PORT или 3000 |
+| VITE_HOST | Хост Vite dev server | 0.0.0.0 |
+| VITE_BACKEND_PORT | Порт backend для proxy | SERVER_PORT или 8080 |
+| VITE_BACKEND_HOST | Хост backend для proxy | SERVER_HOST или localhost |
+
+Frontend автоматически использует `SERVER_PORT` и `SERVER_HOST` из корневого `.env` для настройки proxy к backend.
 
 ## API
 
