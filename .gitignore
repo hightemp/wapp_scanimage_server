@@ -1,0 +1,57 @@
+# Binaries
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go
+*.test
+*.out
+go.work
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+cmd/server/dist/
+!cmd/server/dist/.gitkeep
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data files (keep structure)
+data/*.db
+data/*.db-shm
+data/*.db-wal
+!data/.gitignore
+
+# Scanned files (keep structure)
+files/scanned/*
+!files/scanned/.gitignore
+
+# Archives (keep structure)
+files/archives/*
+!files/archives/.gitignore
+
+# PDFs (keep structure)
+files/pdf/*
+!files/pdf/.gitignore
+
+# Cache
+cache/*
+!cache/.gitignore
+
+# Logs
+*.log
+
+# Environment (keep example)
+.env.local
+.env.*.local
