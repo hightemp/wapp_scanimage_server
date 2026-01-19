@@ -144,6 +144,7 @@ func setupFrontend(router *gin.Engine) {
 		// Fallback to filesystem
 		if _, err := os.Stat("./frontend/dist"); err == nil {
 			router.Static("/assets", "./frontend/dist/assets")
+			router.StaticFile("/favicon.png", "./frontend/dist/favicon.png")
 			router.StaticFile("/", "./frontend/dist/index.html")
 			router.NoRoute(func(c *gin.Context) {
 				c.File("./frontend/dist/index.html")
@@ -152,9 +153,25 @@ func setupFrontend(router *gin.Engine) {
 		return
 	}
 
-	// Serve embedded frontend
-	router.StaticFS("/assets", http.FS(distFS))
+	// Serve assets from embedded filesystem
+	assetsFS, err := fs.Sub(distFS, "assets")
+	if err != nil {
+		log.Println("No assets directory in embedded frontend")
+		return
+	}
+	router.StaticFS("/assets", http.FS(assetsFS))
 
+	// Serve favicon
+	router.GET("/favicon.png", func(c *gin.Context) {
+		data, err := fs.ReadFile(distFS, "favicon.png")
+		if err != nil {
+			c.Status(http.StatusNotFound)
+			return
+		}
+		c.Data(http.StatusOK, "image/png", data)
+	})
+
+	// Serve index.html for root
 	router.GET("/", func(c *gin.Context) {
 		data, err := fs.ReadFile(distFS, "index.html")
 		if err != nil {
@@ -164,7 +181,14 @@ func setupFrontend(router *gin.Engine) {
 		c.Data(http.StatusOK, "text/html; charset=utf-8", data)
 	})
 
+	// SPA fallback - serve index.html for all unmatched routes
 	router.NoRoute(func(c *gin.Context) {
+		// Don't serve index.html for API routes
+		if len(c.Request.URL.Path) >= 4 && c.Request.URL.Path[:4] == "/api" {
+			c.JSON(http.StatusNotFound, gin.H{"error": "Not found"})
+			return
+		}
+
 		data, err := fs.ReadFile(distFS, "index.html")
 		if err != nil {
 			c.String(http.StatusNotFound, "Page not found")
