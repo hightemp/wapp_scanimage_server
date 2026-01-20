@@ -34,17 +34,24 @@ type Config struct {
 func New() *Config {
 	rootPath, _ := os.Getwd()
 
+	// Default paths based on rootPath
+	defaultDataPath := filepath.Join(rootPath, "data")
+	defaultScannedPath := filepath.Join(rootPath, "files", "scanned")
+	defaultArchivesPath := filepath.Join(rootPath, "files", "archives")
+	defaultPDFPath := filepath.Join(rootPath, "files", "pdf")
+	defaultCachePath := filepath.Join(rootPath, "cache")
+
 	cfg := &Config{
 		ServerHost: getEnv("SERVER_HOST", "0.0.0.0"),
 		ServerPort: getEnvInt("SERVER_PORT", 8080),
 		Debug:      getEnvBool("DEBUG", false),
 
 		RootPath:     rootPath,
-		DataPath:     filepath.Join(rootPath, "data"),
-		ScannedPath:  filepath.Join(rootPath, "files", "scanned"),
-		ArchivesPath: filepath.Join(rootPath, "files", "archives"),
-		PDFPath:      filepath.Join(rootPath, "files", "pdf"),
-		CachePath:    filepath.Join(rootPath, "cache"),
+		DataPath:     getEnv("DATA_PATH", defaultDataPath),
+		ScannedPath:  getEnv("SCANNED_PATH", defaultScannedPath),
+		ArchivesPath: getEnv("ARCHIVES_PATH", defaultArchivesPath),
+		PDFPath:      getEnv("PDF_PATH", defaultPDFPath),
+		CachePath:    getEnv("CACHE_PATH", defaultCachePath),
 
 		ScannedRelPath:  "/files/scanned",
 		ArchivesRelPath: "/files/archives",

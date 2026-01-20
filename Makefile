@@ -93,12 +93,18 @@ install: release
 	@sudo install -m 644 .env /etc/$(SERVICE_NAME)/.env
 	@echo "Creating systemd service file..."
 	@echo "$$SYSTEMD_SERVICE" | sudo tee $(SYSTEMD_DIR)/$(SERVICE_NAME).service > /dev/null
-	@sudo mkdir -p /var/lib/$(SERVICE_NAME)
+	@echo "Creating data directories..."
+	@sudo mkdir -p /var/lib/$(SERVICE_NAME)/data
+	@sudo mkdir -p /var/lib/$(SERVICE_NAME)/files/scanned
+	@sudo mkdir -p /var/lib/$(SERVICE_NAME)/files/archives
+	@sudo mkdir -p /var/lib/$(SERVICE_NAME)/files/pdf
+	@sudo mkdir -p /var/lib/$(SERVICE_NAME)/cache
 	@sudo systemctl daemon-reload
 	@sudo systemctl enable $(SERVICE_NAME)
 	@sudo systemctl start $(SERVICE_NAME)
 	@echo "Service installed and started."
 	@echo "Config file: /etc/$(SERVICE_NAME)/.env"
+	@echo "Data directory: /var/lib/$(SERVICE_NAME)/"
 
 # Uninstall from system
 uninstall:
