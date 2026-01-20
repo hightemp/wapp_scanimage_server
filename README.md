@@ -193,3 +193,5 @@ Frontend automatically uses `SERVER_PORT` and `SERVER_HOST` from the root `.env`
 ## License
 
 MIT
+
+![](https://asdertasd.site/counter/wapp_scanimage_server)
