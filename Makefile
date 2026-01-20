@@ -65,14 +65,8 @@ release: frontend
 docker:
 	docker build -t scanimage-server .
 
-# Install to system with systemd
-install: release
-	@echo "Installing $(SERVICE_NAME) to system..."
-	@sudo install -m 755 bin/scanimage-server $(INSTALL_DIR)/$(SERVICE_NAME)
-	@sudo mkdir -p /etc/$(SERVICE_NAME)
-	@sudo install -m 644 .env /etc/$(SERVICE_NAME)/.env
-	@echo "Creating systemd service file..."
-	@sudo tee $(SYSTEMD_DIR)/$(SERVICE_NAME).service > /dev/null <<EOF
+# Systemd service file content
+define SYSTEMD_SERVICE
 [Unit]
 Description=Scanimage Web Server
 After=network.target
@@ -88,7 +82,17 @@ WorkingDirectory=/var/lib/$(SERVICE_NAME)
 
 [Install]
 WantedBy=multi-user.target
-EOF
+endef
+export SYSTEMD_SERVICE
+
+# Install to system with systemd
+install: release
+	@echo "Installing $(SERVICE_NAME) to system..."
+	@sudo install -m 755 bin/scanimage-server $(INSTALL_DIR)/$(SERVICE_NAME)
+	@sudo mkdir -p /etc/$(SERVICE_NAME)
+	@sudo install -m 644 .env /etc/$(SERVICE_NAME)/.env
+	@echo "Creating systemd service file..."
+	@echo "$$SYSTEMD_SERVICE" | sudo tee $(SYSTEMD_DIR)/$(SERVICE_NAME).service > /dev/null
 	@sudo mkdir -p /var/lib/$(SERVICE_NAME)
 	@sudo systemctl daemon-reload
 	@sudo systemctl enable $(SERVICE_NAME)
