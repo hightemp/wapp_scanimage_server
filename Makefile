@@ -69,6 +69,8 @@ docker:
 install: release
 	@echo "Installing $(SERVICE_NAME) to system..."
 	@sudo install -m 755 bin/scanimage-server $(INSTALL_DIR)/$(SERVICE_NAME)
+	@sudo mkdir -p /etc/$(SERVICE_NAME)
+	@sudo install -m 644 .env /etc/$(SERVICE_NAME)/.env
 	@echo "Creating systemd service file..."
 	@sudo tee $(SYSTEMD_DIR)/$(SERVICE_NAME).service > /dev/null <<EOF
 [Unit]
@@ -77,6 +79,7 @@ After=network.target
 
 [Service]
 Type=simple
+EnvironmentFile=/etc/$(SERVICE_NAME)/.env
 ExecStart=$(INSTALL_DIR)/$(SERVICE_NAME)
 Restart=on-failure
 RestartSec=5
@@ -91,6 +94,7 @@ EOF
 	@sudo systemctl enable $(SERVICE_NAME)
 	@sudo systemctl start $(SERVICE_NAME)
 	@echo "Service installed and started."
+	@echo "Config file: /etc/$(SERVICE_NAME)/.env"
 
 # Uninstall from system
 uninstall:
@@ -100,6 +104,7 @@ uninstall:
 	@echo "Removing files..."
 	@sudo rm -f $(INSTALL_DIR)/$(SERVICE_NAME)
 	@sudo rm -f $(SYSTEMD_DIR)/$(SERVICE_NAME).service
+	@sudo rm -rf /etc/$(SERVICE_NAME)
 	@sudo systemctl daemon-reload
 	@echo "$(SERVICE_NAME) uninstalled."
 
